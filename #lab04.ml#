@@ -40,20 +40,17 @@ let sameFstAndSnd =
     function
       | ([] | [_]) -> false
       | (h::t::_) -> true
-      
+      | _ -> false
 
-let rec sumlist' sum lst1  =
-    match lst1 with 
-      |[] -> sum
-      |h::t -> sumlist' (h+sum) t
+let rec sumlist list1 sum =
+    match list1 with 
+    [] -> sum
+    (h::t) -> sumlist t h+sum ;;
 
-let sumlist a =
-  let rec sumlist' sum lst1  =
-    match lst1 with 
-      |[] -> sum
-      |h::t -> sumlist' (h+sum) t
-  in
-    sumlist' 0 a
+
+
+
+
 
 (*	 musex025@csel-kh1250-29:/home/musex025/csci2041/repo-musex025 $ ocaml
         OCaml version 4.02.3
