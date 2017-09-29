@@ -54,6 +54,37 @@ let sumlist a =
       |h::t -> sumlist' (h+sum) t
   in
     sumlist' 0 a
+(* Invarint: sumlist a takes the head of the list and addds it to an on going some then redoes the process with the same list except with out the head that was added to he sum*)
+
+let rec drop (n,l) =
+    match l with
+    | [] -> []
+    | (h::t) -> if (n = 0) then l else drop (n-1, t)
+
+type coord = float * float
+
+type shape =
+     | Circ of coord * float
+     | Triangle of coord * coord * coord
+     | Quadrangle of coord * coord * coord * coord
+
+let pi = 4.0 *. atan 1.0;;
+
+let distance =
+    function
+      | ((x1,y1),(x2,y2)) ->
+            let xdiff = x1 -. x2 in
+            let ydiff = y1 -. y2 in
+              sqrt (xdiff *. xdiff +. ydiff *. ydiff)
+
+
+let perimeter = 
+  function 
+  | Circ ((a,b),r)-> 2.0*.pi*.r
+  | Triangle ((a,b),(c,d),(e,f)) -> distance ((a,b),(c,d)) +. distance ((c,d),(e,f)) +. distance ((a,b),(e,f))
+  | Quadrangle ((a,b),(c,d),(e,f),(g,h)) -> distance ((a,b),(c,d)) +. 
+  distance ((c,d),(e,f)) +. distance ((e,f),(g,h)) +. distance ((g,h),(a,b))
+
 
 (*	 musex025@csel-kh1250-29:/home/musex025/csci2041/repo-musex025 $ ocaml
         OCaml version 4.02.3
