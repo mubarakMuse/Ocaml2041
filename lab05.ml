@@ -13,9 +13,9 @@ let rec maxTree a =
      else maxTree l
 let rec minTree a =
   match a with
-  | Empty -> none
+  | Empty -> None
   | Node (t,l,r) ->
-     if r = Empty then t
+     if r = Empty then Some t
      else minTree r
 
 let rec isSearchTree t =
@@ -32,3 +32,7 @@ let rec isSearchTree t =
    | Node (i,l,r) ->
          isSearchTree l && isSearchTree r &&
            (bigger i (maxTree l)) && (smaller i (minTree r))
+
+let t1 = 
+let t2 = ..
+let t3 = ...
