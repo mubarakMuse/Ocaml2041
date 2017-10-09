@@ -6,13 +6,15 @@ If these scores are different from what you expect, please see the graduate TAs 
 
 
 
-This report was generated at October 08, 21:00:08 PM for musex025. We will try to push updated reports every week.
+This report was generated at October 08, 21:42:18 PM for musex025. We will try to push updated reports every week.
 
 ## Lab Attendance
 
-Your attendance is recorded for Lab 1, Lab 2, Lab 3, Lab 4,  and Lab 5.
+Your attendance is recorded for Lab 1, Lab 2, Lab 3,  and Lab 5.
 
-This is a total of 5 out of 5 labs attended.
+You did not attend Lab 4.
+
+This is a total of 4 out of 5 labs attended.
 
 
 
