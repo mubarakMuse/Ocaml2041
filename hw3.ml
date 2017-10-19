@@ -1,6 +1,6 @@
 (*  Solution for Problem 1 *)
 let divide_list f list1 = 
-let rec divide_list' f' list1' tlist flist =
+let rec divide_list' f' list1' tlist flist = (* helper function *)
 	match list1' with
 	| []-> (tlist , flist)
 	| h::t -> if (f h) then divide_list' f t (h::tlist) (flist) 
@@ -183,7 +183,7 @@ let rec subst a b c =
 	else if freeIn c s then Let x = newname in Let(x, appears s1 e1 newname,appears s e2 newname) else 
 
 
-let rec appears s ex name = 
+let rec appears s ex name =  * Function that sees if a string appears in an expresion and then assigns the renamed name 
 	match ex with
 	| Id i -> if (s=i) then Id name else ex
 	| Int a -> ex
