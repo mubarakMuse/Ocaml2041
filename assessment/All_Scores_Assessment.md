@@ -6,7 +6,7 @@ If these scores are different from what you expect, please see the graduate TAs 
 
 
 
-This report was generated at November 05, 10:31:51 AM for musex025. We will try to push updated reports every week.
+This report was generated at November 11, 16:09:47 PM for musex025. We will try to push updated reports every week.
 
 ## Lab Attendance
 
@@ -58,7 +58,11 @@ This is a total of 8 out of 9 labs attended.
 
 
 
-**Examination Total:** 66 / 100
+- Midterm 2: 69.5 / 100
+
+
+
+**Examination Total:** 135.5 / 200
 
 
 
