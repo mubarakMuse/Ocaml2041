@@ -6,15 +6,15 @@ If these scores are different from what you expect, please see the graduate TAs 
 
 
 
-This report was generated at November 14, 11:45:05 AM for musex025. We will try to push updated reports every week.
+This report was generated at November 21, 08:21:34 AM for musex025. We will try to push updated reports every week.
 
 ## Lab Attendance
 
-Your attendance is recorded for Lab 1, Lab 2, Lab 3, Lab 5, Lab 6, Lab 7, Lab 8,  and Lab 9.
+Your attendance is recorded for Lab 1, Lab 2, Lab 3, Lab 5, Lab 6, Lab 7, Lab 8, Lab 9, Lab 10,  and Lab 11.
 
 You did not attend Lab 4.
 
-This is a total of 8 out of 9 labs attended.
+This is a total of 10 out of 11 labs attended.
 
 
 
@@ -46,7 +46,11 @@ This is a total of 8 out of 9 labs attended.
 
 
 
-**Homework Total:** 168 / 228
+- Homework 5: 55 / 56
+
+
+
+**Homework Total:** 223 / 284
 
 
 
