@@ -37,12 +37,12 @@ let isDigit ch = (ch >= '0' && ch <= '9')
 let getWhole infile =
   let new1 = ref ' ' in 
   let rec getnum num =
-    (new1 := lookupChar () ; 
+    (new1 := lookupChar () ; (* store the first digit*)
       getChar infile; 
-      if ((lookupChar () = ' ') || (lookupChar () = '.') || not(isDigit(lookupChar ()))) 
-      then (num * 10 +(int_of_char !new1 - int_of_char '0'))
-       else getnum (num * 10 +(int_of_char !new1 - int_of_char '0'))) 
-  in getnum (int_of_char '0'-int_of_char '0')
+      if ((lookupChar () = ' ') || (lookupChar () = '.') || not(isDigit(lookupChar ()))) (* check if the next thing isnt a digit *)
+      then (num * 10 +(int_of_char !new1 - int_of_char '0'))(* finalize my  answer and return it *)
+       else getnum (num * 10 +(int_of_char !new1 - int_of_char '0'))) (* else store the current value and move on to thenext digit*)
+  in getnum (int_of_char '0'-int_of_char '0')(* start at zero *)
  
    (* Just a stub for now, filling this in is part of the homework.
       The work done in Lab 11 should be useful in this. *)
@@ -54,6 +54,7 @@ let getWhole infile =
    and interpreting them as the fractional part of a floating point number
    Precondition: the "cursor" on the input channel is over the first digit
    getFrac : in_channel -> float *)
+   (* this entire is identical to my getwhole except that insted of multplying by an increasing number of multple 10*)
  let rec getFrac infile = 
   let new1 = ref ' ' in 
   let rec getnum num multi =
@@ -61,7 +62,7 @@ let getWhole infile =
       getChar infile; 
       if ((lookupChar () = ' ') || (lookupChar () = '.') || not(isDigit(lookupChar ()))) 
       then (num +. (float_of_int((int_of_char !new1 - int_of_char '0'))/.multi))
-       else getnum (num +. (float_of_int((int_of_char !new1 - int_of_char '0'))/.multi)) (multi*.10.0))
+       else getnum (num +. (float_of_int((int_of_char !new1 - int_of_char '0'))/.multi)) (multi*.10.0)) (* making space for the next number*)
   in getnum (float_of_int(int_of_char '0'-int_of_char '0')) 10.0
  
   (* Just a stub for now, filling this in is part of the homework.
@@ -78,18 +79,18 @@ let getWhole infile =
    token in the input is not a floating point number
     getFloat : in_channel -> float option *)
 let getFloat infile =
-  (skipSpace infile; 
-    if (isDigit(lookupChar ())) 
-      then (let x = float_of_int( getWhole infile)
-          in (if (lookupChar () = '.') 
-                then (getChar infile; 
-                    if (isDigit(lookupChar ())) 
-                    then ( Some (x +. getFrac infile)) 
-                    else Some x)
-                else None))
-    else if (lookupChar () = '.') 
+  (skipSpace infile; (* to get to the first digit or deceimal point*)
+    if (isDigit(lookupChar ())) (* found a number first*)
+      then (let x = float_of_int( getWhole infile) (* get the float value of whats before the decimal or the end*)
+          in (if (lookupChar () = '.') (* decimal found*)
+                then (getChar infile; (* move pass the decimal *)
+                    if (isDigit(lookupChar ())) (** found a number first **)
+                    then ( Some (x +. getFrac infile)) (* calucatue the fractonal value of what after the decimal and add it to thhe whole we had*)
+                    else Some x) (* nothing behind the decinal so just return x*)
+                else None)) (* bad input becasue theres no decimal point *)
+    else if (lookupChar () = '.') (* if there nothing before the decicaml*)
             then (getChar infile; 
-                    if (isDigit(lookupChar ())) 
+                    if (isDigit(lookupChar ()))
                       then ( Some (getFrac infile)) 
                       else None)
       else  None)
