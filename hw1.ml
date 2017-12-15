@@ -56,15 +56,15 @@ let everyNth list1 n =
 
 let rec find_salary list1 str =
 	match list1 with
-	|[] -> 0
+	|[] -> 0.0
 	|h::t -> 
 		let (a,b,c) = h in
-			if (a = str) then c
+			if (a = str) then  c  
 			else find_salary t str ;; 
 
 let rec find_phno list2 str2 =
 	match list2 with
-	|[] -> 0
+	|[] -> 0.0
 	|h::t -> 
 		let (a,b,c) = h in
 			if (a = str2) then  b

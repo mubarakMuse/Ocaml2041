@@ -55,9 +55,3 @@ let rec cnf exp =
 
 let f1 = Or ( And ( Neg "F", Pos "G"), Pos "H")
 let f2 = Or ( Pos "H",And ( Neg "F", Pos "G"))
-(*
--> And ( Or ( Neg "F", Pos "H") , Or (Pos "G", Pos "H") )
-
-
-
-*)

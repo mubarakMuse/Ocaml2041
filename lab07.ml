@@ -9,7 +9,7 @@ let rec accumulate f lst u =
   match lst with
   | [] -> u
   | (h::t) -> accumulate f t (f h u)
-
+ 
 let rec reduce f lst u =
   match lst with
   | [] -> u

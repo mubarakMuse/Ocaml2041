@@ -12,6 +12,13 @@ type 'a btree =
     Empty
   | Node of 'a * 'a btree * 'a btree
 
+let cont_insert tree i c =
+	match tree with
+	| Empty -> c Node (i,Empty,Empty)
+	| Node(i',l,r) -> 
+	if (i<i') then cont_insert l i (fun x -> c(Node(i,x,r)))
+				else cont_insert r i (fun x -> c(Node(i,l,x)))
+
 let rec treemap tree f = 
 	match tree with
 	| Empty-> Empty

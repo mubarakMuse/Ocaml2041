@@ -1,4 +1,4 @@
-type 'a mylist = 'a listcell ref
+ type 'a mylist = 'a listcell ref
 and  'a listcell = Nil | Cons of 'a * ('a mylist) ref
 
 let rec reverse l acc = 
@@ -21,3 +21,8 @@ let readnum infile =
       in if (is_digit ch)
          then Some (getnum (int_of_char ch - int_of_char '0'))
          else None 
+let get_num_from_user () =
+  (Printf.printf "Enter a number: "; flush stdout;
+   match (readnum stdin) with
+   | None -> Printf.printf "Bad input\n"
+   | (Some n) -> Printf.printf "Your input: %d\n" n)

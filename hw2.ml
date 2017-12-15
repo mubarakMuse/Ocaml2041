@@ -89,25 +89,38 @@ let rec insert a b c  =
 	match a with
 	| Empty -> Node (b,c,Empty,Empty)
 	| Node (k,d,l,r) -> 
-	if k = b then Node (b,c,l,r)
-	else if (k<b) then Node (k,d,l,insert r b c)
+	if (k<b) then Node (k,d,l,insert r b c)
 	else Node (k,d,insert l b c,r)
 
 (* Part 6: Inorder traversal of the tree *)
 let keylist a0 =
-	let rec keylist' a list1 = 
-	match a with
+	
+	match a0 with
 	| Empty -> []
-	| Node (k,d,l,r) ->  keylist' l list1 @ [k] @ keylist' r list1
-in keylist' a0 []
+	| Node (k,d,l,r) ->  keylist l  @ [k] @ keylist r 
 
 
-(* Part 6:
-let delete a b = 
-	if (find a b = None) then a
-else match a with
-| Node (a,b,c,d) -> if (c = find a b ) then 
-*)
+
+(* Part 7 :*)
+let rec delete t i = 
+	match t with
+	| Empty -> t
+	| Node (i',d, l, r)->  
+		if (i=i') then deleteRoot t 
+		else if (i<i') then Node (i',d, (delete l i), r)
+		else Node (i',d, l, (delete r i))
+let deleteRoot t = 
+	match t with
+	| Node (i',d, Empty, r)-> r
+	| Node (i',d, l, Empty)-> l
+	| Node (i',d, l, r)-> let (i',d',l') = largest_at_someTree l in Node(i',d',l',r')
+
+let rec largest_at_someTree t = 
+	match t with
+	| Node (i,d, l, Empty)-> (i,d, l)
+	| Node (i,d, l, r)-> let (i',d',r') = largest_at_someTree r in (i',d',Node(i,d,l,r'))
+
+
 (* Solution for Problem 5 *)
 type ty = BoolTy | IntTy | FunTy of ty * ty
 type expr' =
@@ -131,9 +144,15 @@ let exp1' = Fun' ("x",IntTy,Fun'("y",BoolTy,Cond'(Id' "y", Plus' (Id' "x",Int' 1
 let exp2' = App'(Fun' ("x",IntTy, App' (Fun' ( "y", IntTy, Int' 5), Id' "x")), Int' 5)
 
 (* Part 2 *)
-(*
-let typeof_aux a [] =
+let rec find01 list01 a =
+	match list01 with
+	| [] -> None
+	| h::t -> let (a1 , b1) = h 
+	in if (a1 = a) then Some b1 else find01 t a
+
+let typeof_aux a env =
 	match a with
+	| Id' s -> find01 env s
 	| Int' a -> Some IntTy 
 	| True' -> Some BoolTy
 	| False' -> Some BoolTy
@@ -143,8 +162,20 @@ let typeof_aux a [] =
 	| Gtr'(e1, e2) -> if (typeof_aux e1 = Some IntTy && typeof_aux e2 = Some IntTy ) then Some BoolTy else None
 	| And'(e1, e2) -> if (typeof_aux e1 = Some BoolTy && typeof_aux e2 = Some BoolTy)  then Some BoolTy else None
 	| Or'(e1, e2) -> if (typeof_aux e1 = Some BoolTy && typeof_aux e2 = Some BoolTy ) then Some BoolTy else None
-	| Cond'(e1,e2,e3) -> if (typeof_aux e1 = Some BoolTy && typeof_aux e2 = Some IntTy && typeof_aux e2 = Some IntTy ) then Some BoolTy else None
-*)
+	| Cond'(e1,e2,e3) -> if (typeof_aux e1 = Some BoolTy && typeof_aux e2 = typeof_aux e3 ) then Some (typeof_aux e3) else None
+	| Fun'(e1,e2,e3) -> match typeof_aux e3 ((e1, e2)::env) with
+						(
+							| None -> None
+							| Some t -> Some FunTy(e2, t)
+						)
+	| App' (e1, e2) -> 
+		(
+			match typeof_aux e1 env, typeof_aux e2 env with
+			| Some FunTy(e11, e12), Some e21 -> if (e11 = e21) then Some e21 else None
+			| _ -> None 
+		)
+
+
 
 
 (* Solution for Problem 6 *)
@@ -168,15 +199,11 @@ type expr =
      | Let of string * expr * expr      (* for let  = exp1 in exp2 *)
 (* part 1*)
 
-let rec find01 list01 a =
-	match list01 with
-	| [] -> None
-	| h::t -> let (a1 , b1) = h 
-	in if (a1 = a) then Some b1 else find01 t a
-(*
+
+
 let rec eval express list1 = 
 	match express with
-	| Id e1 ->  Some e1
+	| Id e1 ->  Some e1 (*find01 on e1*)
 	| Int e1 -> Some e1
 	| True -> Some true
 	| False -> Some false

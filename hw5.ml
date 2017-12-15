@@ -1,6 +1,6 @@
 (* for this state i see that theres going to a list for to accumalte to new reversed list
-i also sse that theres an input list and both list could be of genric type 
-theres no other vaibles or counter that i have to account for so 
+i also sse that theres an input list
+theres no other varibles or counter that i have to account for so 
 those are the only to element that make up my state*)
 
 type state = int list * int list

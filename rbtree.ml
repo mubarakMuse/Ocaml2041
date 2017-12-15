@@ -17,7 +17,7 @@ module type BTREE =
      val find : btree*item -> bool
      val initTree : unit -> btree
    end
-(* Problem 3 Part 1 : functor that 
+(* Problem 4 Part 1 : functor that 
 takes in Data that then satisfies the 
 properties identified by the DATA signature and produces a structure 
 satisfying the properties identified by the BTREE signature.*)
