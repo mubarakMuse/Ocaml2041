@@ -6,7 +6,7 @@ If these scores are different from what you expect, please see the graduate TAs 
 
 
 
-This report was generated at December 18, 19:31:21 PM for musex025. We will try to push updated reports every week.
+This report was generated at December 21, 22:46:38 PM for musex025. We will try to push updated reports every week.
 
 ## Lab Attendance
 
@@ -62,10 +62,6 @@ This is a total of 14 out of 15 labs attended.
 
 
 
-**Homework Total:** 303 / 380
-
-
-
 ## Examination Scores
 
 
@@ -78,7 +74,7 @@ This is a total of 14 out of 15 labs attended.
 
 
 
-**Examination Total:** 135.5 / 200
+- Final: 64 / 100
 
 
 
